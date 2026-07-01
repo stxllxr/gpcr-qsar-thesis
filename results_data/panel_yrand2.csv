@@ -1,0 +1,8 @@
+target,rep_seed,true_R2,null_mean,p
+Serotonin 5-HT2A,18,0.343,-0.226,0.0196
+Dopamine D3,19,0.154,-0.091,0.1176
+Adrenergic alpha2A,10,0.165,-0.207,0.0196
+Sigma1,23,0.081,-0.144,0.098
+Muscarinic M1,12,0.12,-0.243,0.0784
+Opiate mu,11,0.223,-0.204,0.0196
+Adenosine A2A,6,0.065,-0.216,0.3137
