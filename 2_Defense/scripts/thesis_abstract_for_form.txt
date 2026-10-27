@@ -1,0 +1,83 @@
+THESIS ABSTRACT - for the graduation form
+Dagmawi Tarekegn Fikadu, VR509938
+Curation and Cheminformatic Characterization of a Clinical-Stage GPCR Ligand
+Dataset for Machine-Learning-Based Binding Prediction
+
+Plain text, no formatting or special characters, ready to paste.
+
+================================================================================
+FULL  (333 words / 2495 characters)  - matches the thesis abstract
+================================================================================
+
+G protein-coupled receptors (GPCRs) are the most productive class of drug targets, yet the molecular features that govern binding and clinical progression in this class remain incompletely mapped. This thesis curates a dataset of clinical-stage GPCR ligands from ChEMBL, characterises its chemical space, and uses it to train and rigorously validate classical machine-learning models of binding affinity.
+
+A reproducible pipeline (human Ki binding data for compounds in clinical Phases I-IV and below 700 Da, with salt removal, peptide exclusion, a rotatable-bond flexibility filter and highest-pKi deduplication) yielded 3,011 compound-target records spanning 719 unique molecules, 47 targets and 18 receptor families. The library is dominated by aminergic receptors and enriched for approved drugs (52.4% of unique molecules reached Phase IV). Its physicochemical profile is consistent with orally bioavailable, CNS-penetrant chemistry, and ligand-efficiency analysis yielded dataset-derived efficiency benchmarks (mean 0.40 kcal/mol per heavy atom, 95th percentile 0.65, maximum 1.11).
+
+Halogenated compounds (39.1%) were heavier, more lipophilic and less soluble, with lower molecular saturation but essentially unchanged binding affinity; fluorine-only compounds retained higher Fsp3 than heavy-halogen compounds. Halogenation showed no association with clinical phase (chi-square = 3.34, p = 0.342).
+
+As a modelling case study, binding affinity was predicted for two data-rich aminergic targets, serotonin 5-HT2A and dopamine D3. Extending each target's training data to preclinical compounds and applying a metadata-based curation gave modelling sets of 4,620 and 5,488 molecules. A fused representation of extended-connectivity fingerprints (ECFP4) and physicochemical descriptors with gradient-boosted trees (XGBoost) gave the best held-out performance under a leakage-safe Bemis-Murcko scaffold split: a mean R2 of 0.562 (5-HT2A) and 0.644 (D3) with root-mean-squared errors of 0.68-0.70 log units, with Random Forest close behind. Both models passed a 100-permutation y-randomisation test (p = 0.0099) and beat a nearest-neighbour read-across baseline, and a learning curve that approached a plateau near R2 of about 0.6, indicating structure-activity signal under leakage-controlled evaluation.
+
+The curated dataset, the GPCR efficiency benchmarks and the leakage-safe, repeatedly validated modelling framework provide a foundation for future computational work on this target class.
+
+Keywords: GPCR, cheminformatics, ChEMBL, QSAR, machine learning, gradient boosting, molecular fingerprints, scaffold split, ligand efficiency, halogenation
+
+================================================================================
+MEDIUM  (153 words / 1125 characters)  - if the form caps around 1500
+================================================================================
+
+This thesis curates a dataset of clinical-stage GPCR ligands from ChEMBL, characterises its chemical space, and uses it to train and rigorously validate machine-learning models of binding affinity. A reproducible curation pipeline yielded 3,011 compound-target records spanning 719 unique molecules, 47 targets and 18 receptor families. The library is dominated by aminergic receptors and enriched for approved drugs (52.4% of unique molecules reached Phase IV), and ligand-efficiency analysis yielded dataset-derived benchmarks (mean 0.40 kcal/mol per heavy atom, 95th percentile 0.65). Halogenated compounds (39.1%) were heavier, more lipophilic and less soluble, with essentially unchanged binding affinity and no association with clinical phase. As a modelling case study, binding affinity was predicted for serotonin 5-HT2A and dopamine D3. A fused representation of ECFP4 fingerprints and physicochemical descriptors with gradient-boosted trees gave a mean R2 of 0.562 and 0.644 under a leakage-safe Bemis-Murcko scaffold split, passing y-randomisation (p = 0.0099) and beating a nearest-neighbour read-across baseline.
+
+Keywords: GPCR, cheminformatics, ChEMBL, QSAR, machine learning, gradient boosting, molecular fingerprints, scaffold split, ligand efficiency, halogenation
+
+================================================================================
+SHORT  (99 words / 747 characters)  - if the form caps around 1000
+================================================================================
+
+This thesis curates and characterises a dataset of clinical-stage GPCR ligands from ChEMBL, and uses it to build machine-learning models of binding affinity. Curation yielded 3,011 compound-target records across 719 molecules, 47 targets and 18 receptor families, dominated by aminergic receptors and enriched for approved drugs. Chemical characterisation produced dataset-derived ligand-efficiency benchmarks and showed that halogenation, though it shifts physicochemical properties, is unrelated to clinical phase. For serotonin 5-HT2A and dopamine D3, fused ECFP4 and descriptor features with gradient-boosted trees reached a mean R2 of 0.562 and 0.644 under a leakage-safe scaffold split, supported by chance-correlation and baseline controls.
+
+Keywords: GPCR, cheminformatics, ChEMBL, QSAR, machine learning, gradient boosting, molecular fingerprints, scaffold split, ligand efficiency, halogenation
+
+
+================================================================================
+================================================================================
+ITALIANO
+================================================================================
+================================================================================
+
+Titolo:
+Curazione e caratterizzazione cheminformatica di un dataset di ligandi GPCR in fase clinica per la predizione dell'affinità di legame mediante apprendimento automatico
+
+Nota: nei numeri si usa la convenzione italiana (virgola decimale, punto per le
+migliaia). Se il modulo richiede il formato inglese, usare la versione inglese sopra.
+
+================================================================================
+COMPLETO  (464 parole / 3157 caratteri)
+================================================================================
+
+I recettori accoppiati a proteine G (GPCR) costituiscono la classe di bersagli farmacologici più produttiva; tuttavia, le caratteristiche molecolari che governano il legame e la progressione clinica in questa classe restano solo parzialmente caratterizzate. Questa tesi cura un dataset di ligandi GPCR in fase clinica estratti da ChEMBL, ne caratterizza lo spazio chimico e lo impiega per addestrare e validare rigorosamente modelli classici di apprendimento automatico dell'affinità di legame.
+
+Una pipeline riproducibile (dati di legame Ki umani per composti in Fase clinica I-IV e di massa inferiore a 700 Da, con rimozione dei sali, esclusione dei peptidi, un filtro di flessibilità basato sui legami ruotabili e deduplicazione conservando il pKi più elevato) ha prodotto 3.011 record composto-bersaglio, corrispondenti a 719 molecole uniche, 47 bersagli e 18 famiglie recettoriali. La libreria è dominata dai recettori amminergici ed è arricchita in farmaci approvati (il 52,4% delle molecole uniche ha raggiunto la Fase IV). Il profilo fisico-chimico è coerente con una chimica biodisponibile per via orale e in grado di penetrare il sistema nervoso centrale; l'analisi dell'efficienza di legame ha inoltre fornito valori di riferimento derivati dal dataset stesso (media 0,40 kcal/mol per atomo pesante, 95o percentile 0,65, massimo 1,11).
+
+I composti alogenati (39,1%) sono risultati più pesanti, più lipofili e meno solubili, con minore saturazione molecolare ma affinità di legame sostanzialmente invariata; i composti contenenti solo fluoro hanno mantenuto un Fsp3 superiore rispetto a quelli con alogeni pesanti. L'alogenazione non ha mostrato alcuna associazione con la fase clinica (chi-quadro = 3,34; p = 0,342).
+
+Come caso di studio di modellazione, l'affinità di legame è stata predetta per due bersagli amminergici ricchi di dati: il recettore serotoninergico 5-HT2A e il recettore dopaminergico D3. Estendendo i dati di addestramento di ciascun bersaglio ai composti preclinici e applicando una curazione basata sui metadati si sono ottenuti insiemi di modellazione di 4.620 e 5.488 molecole. Una rappresentazione fusa di fingerprint a connettività estesa (ECFP4) e descrittori fisico-chimici, combinata con alberi decisionali potenziati da gradient boosting (XGBoost), ha fornito le migliori prestazioni su dati non visti sotto una suddivisione per scaffold di Bemis-Murcko che previene la contaminazione informativa (data leakage): un R2 medio di 0,562 (5-HT2A) e 0,644 (D3), con errore quadratico medio di 0,68-0,70 unità logaritmiche, seguiti da vicino da Random Forest. Entrambi i modelli hanno superato un test di y-randomization a 100 permutazioni (p = 0,0099) e hanno battuto una baseline di read-across a nearest neighbour; la curva di apprendimento si è avvicinata a un plateau intorno a R2 = 0,6, indicando la presenza di segnale struttura-attività in una valutazione controllata per il leakage.
+
+Il dataset curato, i valori di riferimento di efficienza per i GPCR e il framework di modellazione ripetutamente validato e protetto dal leakage costituiscono una base per futuri lavori computazionali su questa classe di bersagli.
+
+Parole chiave: GPCR, cheminformatica, ChEMBL, QSAR, apprendimento automatico, gradient boosting, fingerprint molecolari, suddivisione per scaffold, efficienza di legame, alogenazione
+
+================================================================================
+MEDIO  (183 parole / 1237 caratteri)
+================================================================================
+
+Questa tesi cura un dataset di ligandi GPCR in fase clinica estratti da ChEMBL, ne caratterizza lo spazio chimico e lo impiega per addestrare e validare rigorosamente modelli di apprendimento automatico dell'affinità di legame. Una pipeline di curazione riproducibile ha prodotto 3.011 record composto-bersaglio, corrispondenti a 719 molecole uniche, 47 bersagli e 18 famiglie recettoriali. La libreria è dominata dai recettori amminergici ed è arricchita in farmaci approvati (il 52,4% delle molecole uniche ha raggiunto la Fase IV); l'analisi dell'efficienza di legame ha fornito valori di riferimento derivati dal dataset (media 0,40 kcal/mol per atomo pesante, 95o percentile 0,65). I composti alogenati (39,1%) sono risultati più pesanti, più lipofili e meno solubili, con affinità sostanzialmente invariata e nessuna associazione con la fase clinica. Come caso di studio, l'affinità è stata predetta per i recettori 5-HT2A e D3: una rappresentazione fusa di fingerprint ECFP4 e descrittori fisico-chimici con gradient boosting ha raggiunto un R2 medio di 0,562 e 0,644 sotto una suddivisione per scaffold di Bemis-Murcko che previene il data leakage, superando un test di y-randomization (p = 0,0099) e una baseline di read-across.
+
+Parole chiave: GPCR, cheminformatica, ChEMBL, QSAR, apprendimento automatico, gradient boosting, fingerprint molecolari, suddivisione per scaffold, efficienza di legame, alogenazione
+
+================================================================================
+BREVE  (120 parole / 814 caratteri)
+================================================================================
+
+Questa tesi cura e caratterizza un dataset di ligandi GPCR in fase clinica estratti da ChEMBL e lo impiega per costruire modelli di apprendimento automatico dell'affinità di legame. La curazione ha prodotto 3.011 record composto-bersaglio su 719 molecole, 47 bersagli e 18 famiglie recettoriali, dominati dai recettori amminergici e arricchiti in farmaci approvati. La caratterizzazione chimica ha fornito valori di riferimento di efficienza di legame e ha mostrato che l'alogenazione, pur modificando le proprietà fisico-chimiche, non è associata alla fase clinica. Per i recettori 5-HT2A e D3, fingerprint ECFP4 e descrittori combinati con gradient boosting hanno raggiunto un R2 medio di 0,562 e 0,644 sotto una suddivisione per scaffold esente da data leakage, con controlli di correlazione casuale e baseline.
+
+Parole chiave: GPCR, cheminformatica, ChEMBL, QSAR, apprendimento automatico, gradient boosting, fingerprint molecolari, suddivisione per scaffold, efficienza di legame, alogenazione

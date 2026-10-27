@@ -1,0 +1,19 @@
+analysis,target,variant,mean,sd,n_seeds,source
+representation MCC,5-HT2A,desc,0.6045,0.0305,12,verify_clf_controls.py -> verify_ctrl.jsonl
+representation MCC,5-HT2A,ecfp,0.6285,0.0369,12,verify_clf_controls.py -> verify_ctrl.jsonl
+representation MCC,5-HT2A,fused,0.6324,0.0295,12,verify_clf_controls.py -> verify_ctrl.jsonl
+representation MCC,Dopamine_D3,desc,0.5848,0.0368,12,verify_clf_controls.py -> verify_ctrl.jsonl
+representation MCC,Dopamine_D3,ecfp,0.6293,0.0387,12,verify_clf_controls.py -> verify_ctrl.jsonl
+representation MCC,Dopamine_D3,fused,0.6332,0.032,12,verify_clf_controls.py -> verify_ctrl.jsonl
+read-across MCC,5-HT2A,1-NN Tanimoto,0.5735,0.0192,12,verify_clf_controls.py -> verify_ctrl.jsonl
+read-across MCC,Dopamine_D3,1-NN Tanimoto,0.5514,0.0444,12,verify_clf_controls.py -> verify_ctrl.jsonl
+y-randomisation MCC,5-HT2A,"true labels, seed 0",0.6784,,1,verify_yrand.py -> verify_yrand.jsonl
+y-randomisation MCC,5-HT2A,null (100 permutations),0.0198,0.0662,100,verify_yrand.py -> verify_yrand.jsonl
+y-randomisation MCC,5-HT2A,null best case,0.1652,,100,verify_yrand.py -> verify_yrand.jsonl
+y-randomisation MCC,Dopamine_D3,"true labels, seed 0",0.6647,,1,verify_yrand.py -> verify_yrand.jsonl
+y-randomisation MCC,Dopamine_D3,null (100 permutations),-0.0011,0.0467,100,verify_yrand.py -> verify_yrand.jsonl
+y-randomisation MCC,Dopamine_D3,null best case,0.1366,,100,verify_yrand.py -> verify_yrand.jsonl
+promiscuity ablation MCC,5-HT2A,full,0.6324,,12,promisc_5-HT2A.jsonl
+promiscuity ablation MCC,5-HT2A,promiscuous removed,0.6616,,12,promisc_5-HT2A.jsonl
+promiscuity ablation MCC,Dopamine_D3,full,0.6332,,12,promisc_Dopamine_D3.jsonl
+promiscuity ablation MCC,Dopamine_D3,promiscuous removed,0.6349,,12,promisc_Dopamine_D3.jsonl

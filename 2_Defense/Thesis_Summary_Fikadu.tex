@@ -1,0 +1,140 @@
+% =====================================================================
+%  Thesis summary (max 2 pages) - Segreteria Carriere Scienze, UniVR
+%  Compile: pdflatex Thesis_Summary_Fikadu.tex   (or paste into Overleaf)
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage[top=20mm,bottom=20mm,left=22mm,right=22mm]{geometry}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\pdfmapfile{}                        % avoid font-expansion errors on some installs
+\microtypesetup{expansion=false}
+
+\titleformat{\section}{\normalfont\bfseries\scshape\normalsize}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{3pt}
+
+\pagestyle{empty}
+\setlength{\emergencystretch}{2em}
+
+\newcommand{\metarow}[2]{\textbf{#1} & #2 \\}
+
+\begin{document}
+
+% ------------------------------------------------------------------ header
+\begin{center}
+  {\large\bfseries\scshape Thesis Summary}
+\end{center}
+\vspace{4pt}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}X@{}}
+  \metarow{Surname, Name}{FIKADU, Dagmawi Tarekegn}
+  \metarow{Student number}{VR509938}
+  \metarow{Degree course}{Master's Degree in Molecular and Medical Biotechnology}
+  \metarow{Department}{Department of Biotechnology, University of Verona}
+  \metarow{Thesis title}{Curation and Cheminformatic Characterization of a
+        Clinical-Stage GPCR Ligand Dataset for Machine-Learning-Based Binding
+        Prediction}
+  \metarow{Principal Investigator}{Prof.\ Alejandro Giorgetti}
+  \metarow{Supervisor}{Filippo Baldessari}
+  \metarow{Academic year}{2025--2026}
+\end{tabularx}
+
+\vspace{6pt}
+
+% ------------------------------------------------------------------ body
+\section{Background and aim}
+G protein-coupled receptors (GPCRs) are the largest family of membrane receptors in the
+human genome and the target of roughly a third of approved drugs. Predicting how tightly a
+small molecule binds a given receptor, from chemical structure alone, would allow large
+compound libraries to be prioritised computationally before any experiment is performed.
+The obstacle is not the modelling itself but the evaluation: chemical datasets contain
+dense series of close analogues, so a model tested on randomly selected compounds is
+largely re-predicting molecules it has effectively already seen, and the resulting
+performance is inflated. This thesis had two aims: to assemble and characterise a curated
+dataset of clinical-stage GPCR ligands, and to build binding-affinity models on that
+dataset under validation strict enough that the reported numbers can be trusted.
+
+\section{Dataset curation and characterisation}
+Human $K_i$ binding data were retrieved from ChEMBL for compounds in clinical phases
+I--IV, restricted to molecules below 700~Da, and processed through a curation chain
+comprising salt removal, peptide exclusion, a flexibility filter and deduplication
+retaining the highest $\mathrm{pK_i}$ per molecule. The resulting set contains 3,011
+compound--target records spanning 719 unique molecules, 47 targets and 18 receptor
+families, with a strong aminergic composition. Fifteen molecular descriptors were computed
+for every compound.
+
+Two properties of the set proved consequential. First, selecting on clinical status rather
+than single-target potency yields extensively polypharmacological chemistry: molecules act
+on 4.19 distinct targets on average, and 64.7\% engage more than one. Second, ligand
+efficiency declines sharply with molecular size (Spearman $\rho=-0.77$): median efficiency
+falls from 0.52 to 0.24 between the smallest and largest compounds while median potency is
+essentially unchanged (6.66 against 6.51), so additional molecular mass purchases no
+additional affinity. Principal component analysis showed the descriptor space to be
+low-dimensional, with 65.5\% of variance in two components, and clinical phase did not
+separate meaningfully within it.
+
+\section{Predictive modelling and validation}
+Two data-rich aminergic receptors, serotonin 5-HT$_{2A}$ and dopamine D$_3$, were selected
+for modelling. The curated clinical set provides only 172 and 173 compounds per target, too
+few to train and validate honestly, so each was extended with preclinical ChEMBL compounds
+under identical curation rules, giving 4,620 and 5,488 molecules. Each molecule was
+represented as a 2,248-dimensional vector combining a 2,048-bit ECFP4 fingerprint with
+approximately 200 normalised physicochemical descriptors, and three tree ensembles were
+trained.
+
+Validation used a repeated Bemis--Murcko scaffold split in which whole scaffold families
+are assigned to one side of the partition, so that every test compound is structurally
+novel to the model. Under this protocol the best model reached a mean held-out $R^2$ of
+0.562 for 5-HT$_{2A}$ and 0.644 for D$_3$ over twelve partitions, with root-mean-squared
+errors of 0.81 and 0.76 log units. Under conventional ten-fold cross-validation the same
+models score 0.679 and 0.717, and both estimates are reported so that the gap between them
+is explicit. The scaffold-split error corresponds to approximately 1.6 and 1.5 times the
+inter-laboratory reproducibility of pooled ChEMBL $K_i$ measurements, indicating that a
+substantial share of the residual error originates in the labels rather than the model.
+
+Recast as a virtual-screening classifier at a 100~nM potency cut-off, the models achieved
+Matthews correlation coefficients of 0.635 and 0.632, with balanced errors and calibrated
+output probabilities, and top-1\% enrichment at approximately 98\% of the ceiling imposed
+by the class balance. Four independent controls support these figures: a 100-permutation
+y-randomisation test ($p=0.0099$), a nearest-neighbour read-across baseline that the models
+exceed by roughly 0.2~$R^2$, an ablation removing polypharmacological compounds, and a
+stricter similarity-cluster split. Under that last and most demanding partition performance
+approximately halves, and the model retains an advantage over the baseline for D$_3$ but
+not for 5-HT$_{2A}$ --- a limit that is reported explicitly. SHAP attribution indicates
+that the two receptors are governed by different property families, charge and
+electrostatics for 5-HT$_{2A}$ and molecular topology for D$_3$.
+
+\section{Conclusions}
+The work delivers a curated and characterised clinical-stage GPCR ligand dataset, and
+affinity models whose performance is established under leakage-controlled evaluation and
+supported by four separate controls. The principal contribution is methodological: the
+reported figures are conservative estimates of prospective performance rather than the
+optimistic values that random-split evaluation produces, and the conditions under which the
+models fail are stated alongside those under which they succeed. Extension across the wider
+receptor panel, three-dimensional and structure-aware representations, and the inclusion of
+confirmed inactive compounds are the natural continuations.
+
+% ------------------------------------------------------------------ signature
+\vspace{10pt}
+\hrule
+\vspace{8pt}
+
+\noindent Verona, 14 September 2026
+
+\vspace{22pt}
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{0.45\textwidth}X@{}}
+  \hrulefill & \\[2pt]
+  {\footnotesize Signature of the candidate} &
+  {\footnotesize Dagmawi Tarekegn Fikadu --- VR509938} \\
+\end{tabularx}
+
+\end{document}

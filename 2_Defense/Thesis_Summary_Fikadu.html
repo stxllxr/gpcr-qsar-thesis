@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thesis Summary — Fikadu VR509938</title>
+<style>
+  @page { size: A4; margin: 20mm 22mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-size: 10.8pt;
+    line-height: 1.38;
+    color: #000;
+  }
+  .hdr {
+    padding-bottom: 2pt;
+    margin-bottom: 10pt;
+  }
+  .hdr h1 {
+    font-size: 13pt;
+    margin: 0 0 8pt 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.4pt;
+  }
+  table.meta { width: 100%; border-collapse: collapse; font-size: 10.2pt; }
+  table.meta td { padding: 1.5pt 0; vertical-align: top; }
+  table.meta td.k { width: 30%; font-weight: bold; }
+  h2 {
+    font-size: 11pt;
+    margin: 11pt 0 3pt 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+  }
+  p { margin: 0 0 6pt 0; text-align: justify; }
+  .sig {
+    margin-top: 16pt;
+    padding-top: 8pt;
+    border-top: 0.6pt solid #000;
+    font-size: 10.2pt;
+  }
+  .sig .row { display: flex; justify-content: space-between; margin-top: 14pt; }
+  .sig .line { border-bottom: 0.8pt solid #000; width: 62mm; height: 16pt; }
+  .lbl { font-size: 9.2pt; }
+  @media print { .noprint { display: none !important; } }
+  .noprint {
+    background: #f2f2f2; border: 1px solid #bbb; padding: 8px 10px;
+    font-family: Arial, sans-serif; font-size: 9pt; margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="noprint">
+  <strong>To produce the PDF:</strong> Ctrl+P → Destination “Save as PDF” → Paper A4 →
+  Margins “Default” → turn <em>off</em> “Headers and footers”. This grey box does not print.
+  Print it, sign the signature line by hand, then scan or sign digitally.
+</div>
+
+<div class="hdr">
+  <h1>Thesis Summary</h1>
+  <table class="meta">
+    <tr><td class="k">Surname, Name</td><td>FIKADU, Dagmawi Tarekegn</td></tr>
+    <tr><td class="k">Student number (matricola)</td><td>VR509938</td></tr>
+    <tr><td class="k">Degree course</td><td>Master’s Degree in Molecular and Medical Biotechnology</td></tr>
+    <tr><td class="k">Department</td><td>Department of Biotechnology, University of Verona</td></tr>
+    <tr><td class="k">Thesis title</td><td>Curation and Cheminformatic Characterization of a Clinical-Stage GPCR Ligand Dataset for Machine-Learning-Based Binding Prediction</td></tr>
+    <tr><td class="k">Principal Investigator</td><td>Prof. Alejandro Giorgetti</td></tr>
+    <tr><td class="k">Supervisor</td><td>Filippo Baldessari</td></tr>
+    <tr><td class="k">Academic year</td><td>2025–2026</td></tr>
+  </table>
+</div>
+
+<h2>Background and aim</h2>
+<p>
+G protein-coupled receptors (GPCRs) are the largest family of membrane receptors in the
+human genome and the target of roughly a third of approved drugs. Predicting how tightly
+a small molecule binds a given receptor, from chemical structure alone, would allow large
+compound libraries to be prioritised computationally before any experiment is performed.
+The obstacle is not the modelling itself but the evaluation: chemical datasets contain
+dense series of close analogues, so a model tested on randomly selected compounds is
+largely re-predicting molecules it has effectively already seen, and the resulting
+performance is inflated. This thesis had two aims: to assemble and characterise a curated
+dataset of clinical-stage GPCR ligands, and to build binding-affinity models on that
+dataset under validation strict enough that the reported numbers can be trusted.
+</p>
+
+<h2>Dataset curation and characterisation</h2>
+<p>
+Human K<sub>i</sub> binding data were retrieved from ChEMBL for compounds in clinical
+phases I–IV, restricted to molecules below 700 Da, and processed through a curation chain
+comprising salt removal, peptide exclusion, a flexibility filter and deduplication
+retaining the highest pK<sub>i</sub> per molecule. The resulting set contains 3,011
+compound–target records spanning 719 unique molecules, 47 targets and 18 receptor
+families, with a strong aminergic composition. Fifteen molecular descriptors were
+computed for every compound.
+</p>
+<p>
+Two properties of the set proved consequential. First, selecting on clinical status rather
+than single-target potency yields extensively polypharmacological chemistry: molecules act
+on 4.19 distinct targets on average, and 64.7&nbsp;% engage more than one. Second,
+ligand efficiency declines sharply with molecular size (Spearman ρ = −0.77): median
+efficiency falls from 0.52 to 0.24 between the smallest and largest compounds while median
+potency is essentially unchanged (6.66 against 6.51), so additional molecular mass
+purchases no additional affinity. Principal component analysis showed the descriptor space
+to be low-dimensional, with 65.5&nbsp;% of variance in two components, and clinical phase
+did not separate meaningfully within it.
+</p>
+
+<h2>Predictive modelling and validation</h2>
+<p>
+Two data-rich aminergic receptors, serotonin 5-HT<sub>2A</sub> and dopamine D<sub>3</sub>,
+were selected for modelling. The curated clinical set provides only 172 and 173 compounds
+per target, too few to train and validate honestly, so each was extended with preclinical
+ChEMBL compounds under identical curation rules, giving 4,620 and 5,488 molecules. Each
+molecule was represented as a 2,248-dimensional vector combining a 2,048-bit ECFP4
+fingerprint with approximately 200 normalised physicochemical descriptors, and three tree
+ensembles were trained.
+</p>
+<p>
+Validation used a repeated Bemis–Murcko scaffold split in which whole scaffold families
+are assigned to one side of the partition, so that every test compound is structurally
+novel to the model. Under this protocol the best model reached a mean held-out
+R<sup>2</sup> of 0.562 for 5-HT<sub>2A</sub> and 0.644 for D<sub>3</sub> over twelve
+partitions, with root-mean-squared errors of 0.81 and 0.76 log units. Under conventional
+ten-fold cross-validation the same models score 0.679 and 0.717, and both estimates are
+reported so that the gap between them is explicit. The scaffold-split error corresponds to
+approximately 1.6 and 1.5 times the inter-laboratory reproducibility of pooled ChEMBL
+K<sub>i</sub> measurements, indicating that a substantial share of the residual error
+originates in the labels rather than the model.
+</p>
+<p>
+Recast as a virtual-screening classifier at a 100&nbsp;nM potency cut-off, the models
+achieved Matthews correlation coefficients of 0.635 and 0.632, with balanced errors and
+calibrated output probabilities, and top-1&nbsp;% enrichment at approximately 98&nbsp;% of
+the ceiling imposed by the class balance. Four independent controls support these figures:
+a 100-permutation y-randomisation test (p = 0.0099), a nearest-neighbour read-across
+baseline that the models exceed by roughly 0.2 R<sup>2</sup>, an ablation removing
+polypharmacological compounds, and a stricter similarity-cluster split. Under that last
+and most demanding partition performance approximately halves, and the model retains an
+advantage over the baseline for D<sub>3</sub> but not for 5-HT<sub>2A</sub> — a limit that
+is reported explicitly. SHAP attribution indicates that the two receptors are governed by
+different property families, charge and electrostatics for 5-HT<sub>2A</sub> and molecular
+topology for D<sub>3</sub>.
+</p>
+
+<h2>Conclusions</h2>
+<p>
+The work delivers a curated and characterised clinical-stage GPCR ligand dataset, and
+affinity models whose performance is established under leakage-controlled evaluation and
+supported by four separate controls. The principal contribution is methodological: the
+reported figures are conservative estimates of prospective performance rather than the
+optimistic values that random-split evaluation produces, and the conditions under which
+the models fail are stated alongside those under which they succeed. Extension across the
+wider receptor panel, three-dimensional and structure-aware representations, and the
+inclusion of confirmed inactive compounds are the natural continuations.
+</p>
+
+<div class="sig">
+  <div>Verona, 14 September 2026</div>
+  <div class="row">
+    <div>
+      <div class="line"></div>
+      <div class="lbl">Signature of the candidate</div>
+    </div>
+    <div>
+      <div class="lbl" style="margin-bottom:2pt;">Dagmawi Tarekegn Fikadu — VR509938</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
